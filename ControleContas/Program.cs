@@ -5,15 +5,21 @@ internal class Program
     {
         try
         {
+            Console.WriteLine("SALDO INICIAL");
             Cliente cliente1 = new Cliente("Matheus", "12345678901", 2000);
-            Conta conta1 = new Conta(123456789, cliente1, 3000);
+            Banco banco1 = new Banco("Nubank", 111);
+            Agencia agencia1 = new Agencia(123, "12345678", "24999111111", banco1);
+            Conta conta1 = new Conta(1, cliente1, 3000, agencia1);
             Console.WriteLine($"{conta1.ToString()}");
 
             Cliente cliente2 = new Cliente("Maria", "12345678901", 2000);
-            Conta conta2 = new Conta(987654321, cliente2, 1000);
+            Banco banco2 = new Banco("Nubank", 111);
+            Agencia agencia2 = new Agencia(456, "12345678", "24999111666", banco2);
+            Conta conta2 = new Conta(2, cliente2, 1000, agencia2);
             Console.WriteLine($"{conta2.ToString()}");
 
             Console.WriteLine(' ');
+            Console.WriteLine("SALDO DEPOIS DAS OPERAÇÕES");
 
             conta2.Deposito(2341.42);
 

@@ -8,22 +8,23 @@
         public double Saldo { get; private set; }
 
         public Cliente Cliente { get; set; }
+        public Agencia Agencia { get; set; }
 
-        public Conta(long numero, Cliente cliente, double saldo)
+        public Conta(long numero, Cliente cliente, double saldo, Agencia agencia)
         {
             Numero = numero;
             Cliente = cliente;
             if (saldo < 10)
                 throw new ArgumentOutOfRangeException("Saldo insuficiente, deve haver no mínimo R$10,00.");
             Saldo = saldo;
+            Agencia = agencia;
         }
 
         public override string ToString()
         {
-            return $"Conta: {this.Numero}; Cliente: {this.Cliente.Nome}; Saldo: {this.Saldo}";
+            return $"Conta: {this.Numero}; Cliente: {this.Cliente.Nome}; Saldo: {this.Saldo}; Agencia: {this.Agencia.Numero}";
         }
 
-        // o método Depositar modifica o saldo
         public void Deposito(double valor)
         {
             if (valor < 0)
@@ -37,9 +38,6 @@
 
             AtualizaMaiorSaldo();
         }
-
-
-        // o método Sacar modifica o saldo, sendo que neste caso o saldo nunca deve ficar negativo
 
         public void Saque(double valor)
         {
@@ -70,8 +68,8 @@
             }
             else
             {
-            this.Saque(valor);
-            destino.Deposito(valor);
+                this.Saque(valor);
+                destino.Deposito(valor);
             }
         }
 
